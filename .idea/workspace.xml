@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3976f2f-960f-4bd0-bae9-314a5c7f1d9b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/LeetCode.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+    <list default="true" id="a3976f2f-960f-4bd0-bae9-314a5c7f1d9b" name="Changes" comment="Initial commit&#10;&#10;Project setup for the workspace which will contain all of my LeetCode practice training.">
       <change afterPath="$PROJECT_DIR$/src/TwoSum.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,6 +70,19 @@
       <option name="presentableId" value="Default" />
       <updated>1712243466785</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial commit&#10;&#10;Project setup for the workspace which will contain all of my LeetCode practice training.">
+      <option name="closed" value="true" />
+      <created>1712244860320</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1712244860320</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit&#10;&#10;Project setup for the workspace which will contain all of my LeetCode practice training." />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit&#10;&#10;Project setup for the workspace which will contain all of my LeetCode practice training." />
   </component>
 </project>
