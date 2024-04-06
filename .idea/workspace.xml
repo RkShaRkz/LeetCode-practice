@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3976f2f-960f-4bd0-bae9-314a5c7f1d9b" name="Changes" comment="Add Two Numbers (represented as reversed lists)&#10;&#10;You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.&#10;&#10;You may assume the two numbers do not contain any leading zero, except the number 0 itself.&#10;&#10;Constraints:&#10;&#10;The number of nodes in each linked list is in the range [1, 100].&#10;0 &lt;= Node.val &lt;= 9&#10;It is guaranteed that the list represents a number that does not have leading zeros.">
+    <list default="true" id="a3976f2f-960f-4bd0-bae9-314a5c7f1d9b" name="Changes" comment="Median of Two Sorted Arrays - O(n) version&#10;&#10;Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.&#10;&#10;The overall run time complexity should be O(log (m+n)).">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MedianOfTwoSortedArrays.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MedianOfTwoSortedArrays.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +50,7 @@
   "keyToString": {
     "Application.AddTwoNumbers.executor": "Run",
     "Application.LongestSubstringWithoutRepeatingCharacters.executor": "Run",
+    "Application.MedianOfTwoSortedArrays.executor": "Run",
     "Application.TwoSum.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -56,7 +58,7 @@
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.LongestSubstringWithoutRepeatingCharacters">
+  <component name="RunManager" selected="Application.MedianOfTwoSortedArrays">
     <configuration name="AddTwoNumbers" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="AddTwoNumbers" />
       <module name="LeetCode" />
@@ -71,6 +73,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MedianOfTwoSortedArrays" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MedianOfTwoSortedArrays" />
+      <module name="LeetCode" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TwoSum" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="TwoSum" />
       <module name="LeetCode" />
@@ -80,6 +89,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MedianOfTwoSortedArrays" />
         <item itemvalue="Application.LongestSubstringWithoutRepeatingCharacters" />
         <item itemvalue="Application.AddTwoNumbers" />
         <item itemvalue="Application.TwoSum" />
@@ -126,7 +136,23 @@
       <option name="project" value="LOCAL" />
       <updated>1712253794365</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Longest Substring Without Repeating Characters&#10;&#10;Given a string s, find the length of the longest &#10;substring&#10; without repeating characters.">
+      <option name="closed" value="true" />
+      <created>1712418904199</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1712418904199</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Median of Two Sorted Arrays - O(n) version&#10;&#10;Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.&#10;&#10;The overall run time complexity should be O(log (m+n)).">
+      <option name="closed" value="true" />
+      <created>1712421854696</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1712421854696</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -144,7 +170,9 @@
     <MESSAGE value="Initial commit&#10;&#10;Project setup for the workspace which will contain all of my LeetCode practice training." />
     <MESSAGE value="Two Sum&#10;&#10;Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to target.&#10;&#10;You may assume that each input would have exactly one solution, and you may not use the same element twice.&#10;&#10;You can return the answer in any order.&#10;&#10;Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?" />
     <MESSAGE value="Add Two Numbers (represented as reversed lists)&#10;&#10;You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.&#10;&#10;You may assume the two numbers do not contain any leading zero, except the number 0 itself.&#10;&#10;Constraints:&#10;&#10;The number of nodes in each linked list is in the range [1, 100].&#10;0 &lt;= Node.val &lt;= 9&#10;It is guaranteed that the list represents a number that does not have leading zeros." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Two Numbers (represented as reversed lists)&#10;&#10;You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.&#10;&#10;You may assume the two numbers do not contain any leading zero, except the number 0 itself.&#10;&#10;Constraints:&#10;&#10;The number of nodes in each linked list is in the range [1, 100].&#10;0 &lt;= Node.val &lt;= 9&#10;It is guaranteed that the list represents a number that does not have leading zeros." />
+    <MESSAGE value="Longest Substring Without Repeating Characters&#10;&#10;Given a string s, find the length of the longest &#10;substring&#10; without repeating characters." />
+    <MESSAGE value="Median of Two Sorted Arrays - O(n) version&#10;&#10;Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.&#10;&#10;The overall run time complexity should be O(log (m+n))." />
+    <option name="LAST_COMMIT_MESSAGE" value="Median of Two Sorted Arrays - O(n) version&#10;&#10;Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.&#10;&#10;The overall run time complexity should be O(log (m+n))." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
