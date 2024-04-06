@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a3976f2f-960f-4bd0-bae9-314a5c7f1d9b" name="Changes" comment="Median of Two Sorted Arrays - O(n) version&#10;&#10;Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.&#10;&#10;The overall run time complexity should be O(log (m+n)).">
+    <list default="true" id="a3976f2f-960f-4bd0-bae9-314a5c7f1d9b" name="Changes" comment="Longest Palindromic String - update/fix/rewrite&#10;&#10;Complete rewrite of the longestPalindrome() method.&#10;&#10;The problems with the previous one, as outlined by ChatGPT were that:&#10;1) The code only checks for palindromes after encountering a repeated character. This approach is flawed because it only considers substrings with repeated characters, ignoring other potential palindromes.&#10;2) When checking for palindromes, the code reverses the StringBuilder and compares it with the original StringBuilder to determine if it's a palindrome. However, this reversal permanently modifies the StringBuilder, making it incorrect for subsequent checks.&#10;3) The code attempts to &quot;revert&quot; the StringBuilder after checking for palindromes. However, this restoration is inadequate because reversing the StringBuilder doesn't fully restore it to its original state after reversal.&#10;&#10;So, this one threw the whole StringBuilder approach away (because the alternative is cloning StringBuilders and going down that rabbithole...)&#10;and tries something much simpler.&#10;&#10;It will iterate through the string, one character at a time. Then, it will consider that character as the center of the palindrome, and expand in both directions looking for a palindrome.&#10;&#10;This approach correctly works for the initial two cases, but also works great for my special case which failed the original (my previous) solution.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MedianOfTwoSortedArrays.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MedianOfTwoSortedArrays.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,18 +48,27 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.AddTwoNumbers.executor": "Run",
+    "Application.LongestPalindromicSubstring.executor": "Run",
     "Application.LongestSubstringWithoutRepeatingCharacters.executor": "Run",
     "Application.MedianOfTwoSortedArrays.executor": "Run",
     "Application.TwoSum.executor": "Run",
+    "Application.ZigZagConversion.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.MedianOfTwoSortedArrays">
+  <component name="RunManager" selected="Application.ZigZagConversion">
     <configuration name="AddTwoNumbers" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="AddTwoNumbers" />
+      <module name="LeetCode" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LongestPalindromicSubstring" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="LongestPalindromicSubstring" />
       <module name="LeetCode" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -80,8 +88,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TwoSum" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="TwoSum" />
+    <configuration name="ZigZagConversion" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ZigZagConversion" />
       <module name="LeetCode" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -89,10 +97,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.ZigZagConversion" />
+        <item itemvalue="Application.LongestPalindromicSubstring" />
         <item itemvalue="Application.MedianOfTwoSortedArrays" />
         <item itemvalue="Application.LongestSubstringWithoutRepeatingCharacters" />
         <item itemvalue="Application.AddTwoNumbers" />
-        <item itemvalue="Application.TwoSum" />
       </list>
     </recent_temporary>
   </component>
@@ -152,7 +161,31 @@
       <option name="project" value="LOCAL" />
       <updated>1712421854696</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Median of Two Sorted Arrays - O(log(n)) version&#10;&#10;Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.&#10;&#10;The overall run time complexity should be O(log (m+n)).&#10;&#10;Since we need to hit O(log(n)) I'm guessing we somehow need to use binary something something, like a binary search.&#10;&#10;The key difference over O(n) is that we're doing a binary search on just partial subarrays (partitions) - or finding the partition sizes using binary search to be more precise - and then we're calculating the median based off of just half of the elements.&#10;&#10;Finding these boundaries looks like a hack, feels like a hack (or a code-smell at least) but is really not.&#10;&#10;The real reason why it *still* looks like a hack is due to the fact that the problem statement *NEVER* mentions &quot;sorted and consecutive&quot;, which this solution not only implies but also relies on.&#10;&#10;EDIT: I stand corrected, it does not rely on it and works fine for non-consecutive arrays. lol.">
+      <option name="closed" value="true" />
+      <created>1712424405182</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712424405182</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Longest Palindromic String&#10;&#10;Given a string s, return the longest &#10;palindromic&#10; &#10;substring&#10; in s.&#10; &#10; NOTE: it doesn't work fine for my own example case... needs fixing. probably heavy fixing. a rewrite from scratch more likely.">
+      <option name="closed" value="true" />
+      <created>1712426830426</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1712426830426</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Longest Palindromic String - update/fix/rewrite&#10;&#10;Complete rewrite of the longestPalindrome() method.&#10;&#10;The problems with the previous one, as outlined by ChatGPT were that:&#10;1) The code only checks for palindromes after encountering a repeated character. This approach is flawed because it only considers substrings with repeated characters, ignoring other potential palindromes.&#10;2) When checking for palindromes, the code reverses the StringBuilder and compares it with the original StringBuilder to determine if it's a palindrome. However, this reversal permanently modifies the StringBuilder, making it incorrect for subsequent checks.&#10;3) The code attempts to &quot;revert&quot; the StringBuilder after checking for palindromes. However, this restoration is inadequate because reversing the StringBuilder doesn't fully restore it to its original state after reversal.&#10;&#10;So, this one threw the whole StringBuilder approach away (because the alternative is cloning StringBuilders and going down that rabbithole...)&#10;and tries something much simpler.&#10;&#10;It will iterate through the string, one character at a time. Then, it will consider that character as the center of the palindrome, and expand in both directions looking for a palindrome.&#10;&#10;This approach correctly works for the initial two cases, but also works great for my special case which failed the original (my previous) solution.">
+      <option name="closed" value="true" />
+      <created>1712427494857</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1712427494857</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -172,7 +205,10 @@
     <MESSAGE value="Add Two Numbers (represented as reversed lists)&#10;&#10;You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.&#10;&#10;You may assume the two numbers do not contain any leading zero, except the number 0 itself.&#10;&#10;Constraints:&#10;&#10;The number of nodes in each linked list is in the range [1, 100].&#10;0 &lt;= Node.val &lt;= 9&#10;It is guaranteed that the list represents a number that does not have leading zeros." />
     <MESSAGE value="Longest Substring Without Repeating Characters&#10;&#10;Given a string s, find the length of the longest &#10;substring&#10; without repeating characters." />
     <MESSAGE value="Median of Two Sorted Arrays - O(n) version&#10;&#10;Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.&#10;&#10;The overall run time complexity should be O(log (m+n))." />
-    <option name="LAST_COMMIT_MESSAGE" value="Median of Two Sorted Arrays - O(n) version&#10;&#10;Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.&#10;&#10;The overall run time complexity should be O(log (m+n))." />
+    <MESSAGE value="Median of Two Sorted Arrays - O(log(n)) version&#10;&#10;Given two sorted arrays nums1 and nums2 of size m and n respectively, return the median of the two sorted arrays.&#10;&#10;The overall run time complexity should be O(log (m+n)).&#10;&#10;Since we need to hit O(log(n)) I'm guessing we somehow need to use binary something something, like a binary search.&#10;&#10;The key difference over O(n) is that we're doing a binary search on just partial subarrays (partitions) - or finding the partition sizes using binary search to be more precise - and then we're calculating the median based off of just half of the elements.&#10;&#10;Finding these boundaries looks like a hack, feels like a hack (or a code-smell at least) but is really not.&#10;&#10;The real reason why it *still* looks like a hack is due to the fact that the problem statement *NEVER* mentions &quot;sorted and consecutive&quot;, which this solution not only implies but also relies on.&#10;&#10;EDIT: I stand corrected, it does not rely on it and works fine for non-consecutive arrays. lol." />
+    <MESSAGE value="Longest Palindromic String&#10;&#10;Given a string s, return the longest &#10;palindromic&#10; &#10;substring&#10; in s.&#10; &#10; NOTE: it doesn't work fine for my own example case... needs fixing. probably heavy fixing. a rewrite from scratch more likely." />
+    <MESSAGE value="Longest Palindromic String - update/fix/rewrite&#10;&#10;Complete rewrite of the longestPalindrome() method.&#10;&#10;The problems with the previous one, as outlined by ChatGPT were that:&#10;1) The code only checks for palindromes after encountering a repeated character. This approach is flawed because it only considers substrings with repeated characters, ignoring other potential palindromes.&#10;2) When checking for palindromes, the code reverses the StringBuilder and compares it with the original StringBuilder to determine if it's a palindrome. However, this reversal permanently modifies the StringBuilder, making it incorrect for subsequent checks.&#10;3) The code attempts to &quot;revert&quot; the StringBuilder after checking for palindromes. However, this restoration is inadequate because reversing the StringBuilder doesn't fully restore it to its original state after reversal.&#10;&#10;So, this one threw the whole StringBuilder approach away (because the alternative is cloning StringBuilders and going down that rabbithole...)&#10;and tries something much simpler.&#10;&#10;It will iterate through the string, one character at a time. Then, it will consider that character as the center of the palindrome, and expand in both directions looking for a palindrome.&#10;&#10;This approach correctly works for the initial two cases, but also works great for my special case which failed the original (my previous) solution." />
+    <option name="LAST_COMMIT_MESSAGE" value="Longest Palindromic String - update/fix/rewrite&#10;&#10;Complete rewrite of the longestPalindrome() method.&#10;&#10;The problems with the previous one, as outlined by ChatGPT were that:&#10;1) The code only checks for palindromes after encountering a repeated character. This approach is flawed because it only considers substrings with repeated characters, ignoring other potential palindromes.&#10;2) When checking for palindromes, the code reverses the StringBuilder and compares it with the original StringBuilder to determine if it's a palindrome. However, this reversal permanently modifies the StringBuilder, making it incorrect for subsequent checks.&#10;3) The code attempts to &quot;revert&quot; the StringBuilder after checking for palindromes. However, this restoration is inadequate because reversing the StringBuilder doesn't fully restore it to its original state after reversal.&#10;&#10;So, this one threw the whole StringBuilder approach away (because the alternative is cloning StringBuilders and going down that rabbithole...)&#10;and tries something much simpler.&#10;&#10;It will iterate through the string, one character at a time. Then, it will consider that character as the center of the palindrome, and expand in both directions looking for a palindrome.&#10;&#10;This approach correctly works for the initial two cases, but also works great for my special case which failed the original (my previous) solution." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -181,6 +217,11 @@
           <url>file://$PROJECT_DIR$/src/LongestSubstringWithoutRepeatingCharacters.java</url>
           <line>18</line>
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LongestPalindromicSubstring.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
