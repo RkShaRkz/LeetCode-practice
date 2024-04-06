@@ -1,64 +1,35 @@
-import java.util.Set;
-import java.util.TreeSet;
-
 public class LongestPalindromicSubstring {
 
     public static String longestPalindrome(String s) {
-        Set<Character> seenCharacters = new TreeSet<>();
-        int start = 0, end = 0;
-        int maxLength = 0; //retVal
+        int maxLength = 0;
+        String longestPalindrome = "";
 
-        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            // Check for odd-length palindromes with s.charAt(i) as the center
+            String oddPalindrome = expandAroundCenter(s, i, i);
+            if (oddPalindrome.length() > maxLength) {
+                maxLength = oddPalindrome.length();
+                longestPalindrome = oddPalindrome;
+            }
 
-        while (end < s.length() - 1) {
-            Character endCharacter = s.charAt(end);
-            if (!seenCharacters.contains(endCharacter)) {
-                seenCharacters.add(endCharacter);
-                int newLength = (end - start) + 1;
-
-                if (newLength > maxLength) {
-                    maxLength = newLength;
-                }
-
-                sb.append(endCharacter);
-
-                end++;
-            } else {
-                // We have already seen this character
-                // this means two things:
-                // 1. we have found a potential palindrome
-                // 2. we need to increment the start and remove it (the startCharacter) from the set and our substring
-                // in the case we have not found a palindrome
-                char startCharacter = s.charAt(start);
-                seenCharacters.remove(startCharacter);
-
-                // Append the already-seen 'end' character
-                sb.append(endCharacter);
-
-                // Check for palindrome
-                String string = sb.toString();
-                if (sb.length() > 1 && string.equalsIgnoreCase(sb.reverse().toString())) {
-                    return sb.toString();
-                } else {
-                    // No palindrome, revert the stringbuilder to original form
-                    sb.reverse();
-                    // Since we have not found a palindrome, delete the 'start' character and keep on looking
-                    sb.deleteCharAt(start);
-                    // recheck
-                    string = sb.toString();
-                    if (sb.length() > 1 && string.equalsIgnoreCase(sb.reverse().toString())) {
-                        return sb.toString();
-                    } else {
-                        // revert since it wasn't a palindrome
-                        sb.reverse();
-                    }
-                }
-
-                start++;
+            // Check for even-length palindromes with s.charAt(i) and s.charAt(i+1) as the center
+            String evenPalindrome = expandAroundCenter(s, i, i + 1);
+            if (evenPalindrome.length() > maxLength) {
+                maxLength = evenPalindrome.length();
+                longestPalindrome = evenPalindrome;
             }
         }
 
-        throw new IllegalStateException("Should not reach this");
+        return longestPalindrome;
+    }
+
+    private static String expandAroundCenter(String s, int left, int right) {
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            left--;
+            right++;
+        }
+        // Return the substring from left+1 to right-1 because the while loop ended at non-matching indices
+        return s.substring(left + 1, right);
     }
 
     public static void main(String[] args) {
